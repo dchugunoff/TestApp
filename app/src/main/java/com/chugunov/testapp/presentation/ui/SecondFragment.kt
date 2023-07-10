@@ -1,4 +1,4 @@
-package com.chugunov.testapp
+package com.chugunov.testapp.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
