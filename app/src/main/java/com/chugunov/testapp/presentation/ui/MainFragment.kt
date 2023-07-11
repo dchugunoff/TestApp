@@ -1,16 +1,17 @@
 package com.chugunov.testapp.presentation.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.chugunov.testapp.databinding.FragmentMainBinding
-import com.chugunov.testapp.presentation.viewmodels.FragmentState
+import com.chugunov.testapp.presentation.utils.FragmentState
 import com.chugunov.testapp.presentation.viewmodels.MainViewModel
 
-class MainFragment: Fragment() {
+class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
@@ -33,6 +34,8 @@ class MainFragment: Fragment() {
             calculateSum()
             viewModel.setCurrentFragmentState(FragmentState.SecondFragmentState)
         }
+        Log.d("ViewModel", "Фрагмент - ${viewModel.currentFragmentState}")
+        Log.d("ViewModel", "Фрагмент(this) - ${this}")
     }
 
     override fun onDestroy() {
