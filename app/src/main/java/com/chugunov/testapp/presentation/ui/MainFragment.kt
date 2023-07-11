@@ -30,6 +30,7 @@ class MainFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.mainNextViewButton.setOnClickListener {
+            calculateSum()
             viewModel.setCurrentFragmentState(FragmentState.SecondFragmentState)
         }
     }
@@ -37,5 +38,11 @@ class MainFragment: Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun calculateSum() {
+        val firstNumber = binding.firstNumber.text.toString().toIntOrNull()
+        val secondNumber = binding.secondNumber.text.toString().toIntOrNull()
+        viewModel.calculateSum(firstNumber ?: 0, secondNumber ?: 0)
     }
 }

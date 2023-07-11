@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private fun showSecondFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, SecondFragment())
+            .addToBackStack(null)
             .commit()
     }
 }
