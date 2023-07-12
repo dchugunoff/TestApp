@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.chugunov.testapp.databinding.FragmentSecondBinding
 import com.chugunov.testapp.presentation.adapters.UsersAdapter
-import com.chugunov.testapp.presentation.utils.FragmentState
 import com.chugunov.testapp.presentation.utils.LoadingState
 import com.chugunov.testapp.presentation.viewmodels.MainViewModel
 
@@ -23,6 +23,7 @@ class SecondFragment : Fragment() {
 
     private lateinit var usersAdapter: UsersAdapter
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,22 +32,23 @@ class SecondFragment : Fragment() {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         setupResult()
         usersAdapter = UsersAdapter()
-        Log.d("ViewModel", "Фрагмент - ${viewModel.currentFragmentState}")
-        Log.d("ViewModel", "Фрагмент(this) - ${this}")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadData()
+        if (savedInstanceState == null) {
+            viewModel.loadData()
+        }
+        Log.d("ViewModel", "${viewModel.loadingState}")
         binding.usersRv.adapter = usersAdapter
         viewModel.users.observe(viewLifecycleOwner) {
             usersAdapter.submitList(it)
         }
-
         binding.closeFragment.setOnClickListener {
-            viewModel.setCurrentFragmentState(FragmentState.MainFragmentState)
+            findNavController().popBackStack()
         }
+
 
         viewModel.loadingState.observe(viewLifecycleOwner) { loadingState ->
             when (loadingState) {

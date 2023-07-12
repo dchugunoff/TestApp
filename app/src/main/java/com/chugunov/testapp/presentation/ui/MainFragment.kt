@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.chugunov.testapp.R
 import com.chugunov.testapp.databinding.FragmentMainBinding
 import com.chugunov.testapp.presentation.utils.FragmentState
 import com.chugunov.testapp.presentation.viewmodels.MainViewModel
@@ -34,8 +36,6 @@ class MainFragment : Fragment() {
             calculateSum()
             viewModel.setCurrentFragmentState(FragmentState.SecondFragmentState)
         }
-        Log.d("ViewModel", "Фрагмент - ${viewModel.currentFragmentState}")
-        Log.d("ViewModel", "Фрагмент(this) - ${this}")
     }
 
     override fun onDestroy() {
