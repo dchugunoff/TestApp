@@ -13,18 +13,27 @@ import com.chugunov.testapp.presentation.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
+
+    //Экземпляр привязки для активити
     private lateinit var binding: ActivityMainBinding
+
+    //Создание экземпляра ViewModel с использованием viewModels() делегата свойств.
+    //елегат свойства by viewModels() брабатывает создание и сохраненине экземпляра ViewModel для активити.
     private val viewModel: MainViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Настройка привязки с использованием раздувания макета
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         if (savedInstanceState == null) {
+            // Нахождение фрагмента навигации по его id
             val navHostFragment =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
             val navController = navHostFragment.navController
+
+            //Наблюдение за изменениями состояния фрагмента в ViewModel
             viewModel.currentFragmentState.observe(this, Observer { fragmentState ->
                 when (fragmentState) {
                     is FragmentState.MainFragmentState -> navController.navigate(R.id.mainFragment)

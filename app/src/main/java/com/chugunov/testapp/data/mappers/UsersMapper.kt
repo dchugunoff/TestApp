@@ -6,6 +6,10 @@ import com.chugunov.testapp.domain.entity.User
 
 class UsersMapper {
 
+    /**
+     * Класс маппера, который хранит в себе 2 функции для преобразования сущностей UserDto в User
+     */
+
     fun mapToDomain(usersDto: UsersDto): List<User> {
         return usersDto.users.map { mapToDomain(it) }
     }

@@ -4,6 +4,10 @@ import com.google.gson.Gson
 
 class ApiService {
 
+    /**
+     * Класс ApiService, в котором имитируется загрузка данных
+     */
+
     private val json = """
         {
             "users": [
@@ -27,6 +31,7 @@ class ApiService {
         }
     """.trimIndent()
 
+    //Функция для парсинга JSON в лист UserDto с помощью библиотеки GSON.
     fun getUsersListDto(): UsersDto {
         return Gson().fromJson(json, UsersDto::class.java)
     }

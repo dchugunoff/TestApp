@@ -20,12 +20,15 @@ class MainViewModel : ViewModel() {
         apiService = ApiService(),
         usersMapper = UsersMapper()
     )
+
+    //Переменная, которая создает экземпляр GetUserUseCase
     private val getUsersUseCase = GetUsersUseCase(repository)
 
     // Лайвдата с сохранением текущего фрагмента
     private val _currentFragmentState = MutableLiveData<FragmentState>()
     val currentFragmentState: LiveData<FragmentState> = _currentFragmentState
 
+    //Лайвдата которая хранит в себе статус загрузки данных
     private val _loadingState = MutableLiveData<LoadingState>()
     val loadingState: LiveData<LoadingState> = _loadingState
 
@@ -33,11 +36,13 @@ class MainViewModel : ViewModel() {
     private val _sum = MutableLiveData<Int>()
     val sum: LiveData<Int> = _sum
 
+    //Лайвдата, в которой хранится список юзеров
     private val _users = MutableLiveData<List<User>>()
     val users: LiveData<List<User>> = _users
 
 
-    suspend fun getUsers() {
+    //Функция, которая вызывает метод getUsers у UseCase и помещает юзеров в лайвдату
+    private suspend fun getUsers() {
         _users.postValue(getUsersUseCase.getUsers())
     }
 
@@ -51,6 +56,7 @@ class MainViewModel : ViewModel() {
         _sum.value = firstNumber.plus(secondNumber)
     }
 
+    //Функция, которая вызывается в SecondFragment для имитации загрузки данных
     fun loadData() {
         viewModelScope.launch {
             if (_loadingState.value != LoadingState.Loading) {

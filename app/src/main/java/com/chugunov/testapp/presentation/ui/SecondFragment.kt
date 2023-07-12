@@ -50,6 +50,7 @@ class SecondFragment : Fragment() {
         }
 
 
+        //Наблюдение за состоянием загрузки данных
         viewModel.loadingState.observe(viewLifecycleOwner) { loadingState ->
             when (loadingState) {
                 LoadingState.Loading -> {
@@ -71,6 +72,7 @@ class SecondFragment : Fragment() {
         _binding = null
     }
 
+    //Установка значения суммы
     private fun setupResult() {
         viewModel.sum.observe(viewLifecycleOwner) {
             binding.tvResult.text = it.toString()

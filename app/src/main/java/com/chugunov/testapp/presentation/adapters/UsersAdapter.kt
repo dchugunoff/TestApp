@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chugunov.testapp.databinding.UserCardBinding
 import com.chugunov.testapp.domain.entity.User
 
+/**
+ * Адаптер для отображения списка пользователей в RecyclerView
+ */
 class UsersAdapter: ListAdapter<User, UsersAdapter.UsersViewHolder>(DiffCallback) {
     inner class UsersViewHolder(private val binding: UserCardBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -32,6 +35,9 @@ class UsersAdapter: ListAdapter<User, UsersAdapter.UsersViewHolder>(DiffCallback
         holder.bind(user)
     }
 
+    /**
+     * Объект-компаньен, который используется для определения правил сравнения двух объектов типа User.
+     */
     companion object  {
         private val DiffCallback = object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
