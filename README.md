@@ -1,5 +1,7 @@
 # TestApp
 Этот репозиторий содержит решение тестового задания.
+
+[ССЫЛКА НА COMPOSE](https://github.com/dchugunoff/TestAppCompose)
 ## Задание
 ![](https://i.imgur.com/h1azgEV.png)
 
