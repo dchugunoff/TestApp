@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TestApp</string>
+    <string name="next_view_button">Вторая View</string>
+    <string name="name">Имя</string>
+    <string name="age">Возраст</string>
+    <string name="close">Закрыть</string>
 </resources>
