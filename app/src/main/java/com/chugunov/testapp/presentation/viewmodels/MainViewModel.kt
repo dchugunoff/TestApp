@@ -9,7 +9,6 @@ import com.chugunov.testapp.data.mappers.UsersMapper
 import com.chugunov.testapp.data.network.ApiService
 import com.chugunov.testapp.domain.GetUsersUseCase
 import com.chugunov.testapp.domain.entity.User
-import com.chugunov.testapp.presentation.utils.FragmentState
 import com.chugunov.testapp.presentation.utils.LoadingState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -24,9 +23,6 @@ class MainViewModel : ViewModel() {
     //Переменная, которая создает экземпляр GetUserUseCase
     private val getUsersUseCase = GetUsersUseCase(repository)
 
-    // Лайвдата с сохранением текущего фрагмента
-    private val _currentFragmentState = MutableLiveData<FragmentState>()
-    val currentFragmentState: LiveData<FragmentState> = _currentFragmentState
 
     //Лайвдата которая хранит в себе статус загрузки данных
     private val _loadingState = MutableLiveData<LoadingState>()
@@ -47,9 +43,6 @@ class MainViewModel : ViewModel() {
     }
 
     //Передача значения состояния фрагмента в лайвдату _currentFragmentState
-    fun setCurrentFragmentState(fragmentState: FragmentState) {
-        _currentFragmentState.value = fragmentState
-    }
 
     //Метод расчета суммы двух чисел
     fun calculateSum(firstNumber: Int, secondNumber: Int) {
